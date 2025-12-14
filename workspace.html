@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html class="dark" lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Workspace | Med.AI</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "background-light": "#FFFFFF",
+                        "background-dark": "#0D0D0F",
+                        "surface-dark": "#161b22",
+                        "afzal-purple": "#8C4FFF",
+                        "afzal-blue": "#4D9CFF",
+                        "afzal-green": "#10B981", 
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace'],
+                    },
+                    backgroundImage: {
+                        'grid-pattern-dark': "linear-gradient(to right, rgba(255,255,255,0.05) 1px, transparent 1px), linear-gradient(to bottom, rgba(255,255,255,0.05) 1px, transparent 1px)",
+                        'radial-glow': "radial-gradient(circle at center, rgba(140, 79, 255, 0.15) 0%, transparent 70%)",
+                    }
+                },
+            },
+        };
+    </script>
+
+    <style>
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #0D0D0F; }
+        ::-webkit-scrollbar-thumb { background: #374151; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #4b5563; }
+
+        .fade-up {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+
+        .model-card {
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            overflow: hidden;
+        }
+        .model-card:hover {
+            transform: translateY(-8px);
+        }
+
+        .tech-badge {
+            font-size: 0.7rem;
+            font-family: 'JetBrains Mono', monospace;
+            padding: 0.25rem 0.6rem;
+            border-radius: 9999px;
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(255,255,255,0.1);
+            color: #9CA3AF;
+            transition: all 0.2s;
+        }
+
+        .roadmap-step {
+            position: relative;
+        }
+        .roadmap-step:not(:last-child)::after {
+            content: '';
+            position: absolute;
+            right: -20px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 20px;
+            height: 2px;
+            background: #374151;
+            display: none;
+        }
+        @media (min-width: 1024px) {
+            .roadmap-step:not(:last-child)::after { display: block; }
+        }
+        .dashed-flow-line {
+            background: linear-gradient(90deg, #06b6d4, #ec4899, #8C4FFF, #10b981, #f59e0b);
+            height: 3px;
+            width: 100%;
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            
+            mask-image: repeating-linear-gradient(90deg, black 0, black 10px, transparent 10px, transparent 20px);
+            -webkit-mask-image: repeating-linear-gradient(90deg, black 0, black 10px, transparent 10px, transparent 20px);
+            
+            animation: flowDash 30s linear infinite;
+            z-index: 0;
+            opacity: 0.6;
+        }
+
+        @keyframes flowDash {
+            0% { -webkit-mask-position: 0 0; mask-position: 0 0; }
+            100% { -webkit-mask-position: 1000px 0; mask-position: 1000px 0; }
+        }
+
+        .line-glow {
+            position: absolute;
+            top: 50%;
+            left: 0;
+            width: 100%;
+            height: 10px;
+            background: linear-gradient(90deg, #06b6d4, #ec4899, #8C4FFF, #10b981, #f59e0b);
+            transform: translateY(-50%);
+            filter: blur(15px);
+            opacity: 0.2;
+            z-index: 0;
+        }
+    </style>
+
+</head>
+<body class="font-sans antialiased text-gray-300 bg-background-dark overflow-x-hidden selection:bg-afzal-purple selection:text-white">
+
+<nav class="border-b border-gray-800 sticky top-0 z-50 bg-background-dark/80 backdrop-blur-md h-16">
+    <div class="w-full h-full">
+        <div class="grid grid-cols-[auto_1fr_auto] lg:grid-cols-3 items-center h-full">
+            <div class="flex items-center h-full pl-6 lg:pl-8">
+                <a href="index.html" class="flex items-center space-x-2.5 mr-8 shrink-0">
+                    <div class="w-8 h-8 bg-white rounded-full relative overflow-hidden flex items-center justify-center">
+                        <i class="fa-solid fa-staff-snake text-black text-lg"></i>
+                    </div>
+                    <span class="font-bold text-2xl tracking-tight text-white font-sans">Med.AI</span>
+                </a>
+                <div class="flex items-center gap-1 sm:gap-2">
+                    <a class="group relative z-[1] inline-flex items-center cursor-pointer transition-colors text-sm font-medium text-white px-2 py-2" href="workspace.html">
+                        <span class="relative">
+                            <span class="absolute z-[0] -left-2 -top-1 h-[calc(100%+8px)] w-[calc(100%+16px)] bg-afzal-purple/10 border border-afzal-purple/20 rounded-sm"></span>
+                            <span class="relative z-[1] px-1">Workspace</span>
+                        </span>
+                    </a>
+                    <a class="group relative z-[1] inline-flex items-center cursor-pointer transition-colors text-sm font-medium text-gray-300 hover:text-white px-2 py-2" href="research.html">
+                        <span class="relative"><span class="absolute z-[0] origin-right scale-x-0 bg-afzal-purple/20 transition-transform duration-300 ease-out group-hover:origin-left -left-2 -top-1 h-[calc(100%+8px)] w-[calc(100%+16px)] group-hover:scale-x-100 rounded-sm"></span><span class="relative z-[1] px-1">Research</span></span>
+                    </a>
+                    <a class="group relative z-[1] inline-flex items-center cursor-pointer transition-colors text-sm font-medium text-gray-300 hover:text-white px-2 py-2" href="about.html">
+                        <span class="relative"><span class="absolute z-[0] origin-right scale-x-0 bg-afzal-purple/20 transition-transform duration-300 ease-out group-hover:origin-left -left-2 -top-1 h-[calc(100%+8px)] w-[calc(100%+16px)] group-hover:scale-x-100 rounded-sm"></span><span class="relative z-[1] px-1">About</span></span>
+                    </a>
+                </div>
+            </div>
+            <div class="hidden lg:block"></div>
+            <div class="flex items-center justify-end h-full">
+                <a class="relative z-[1] flex items-center justify-center bg-white text-black h-full px-6 sm:px-8 lg:px-10 font-semibold text-sm whitespace-nowrap group overflow-hidden" href="workspace.html">
+                    <div class="absolute inset-0 z-[0] h-full w-full scale-x-0 bg-afzal-purple opacity-0 transition-all duration-300 origin-right group-hover:origin-left group-hover:scale-x-100 group-hover:opacity-100"></div>
+                    <span class="relative z-[1] group-hover:text-white transition-colors duration-300">Get Started</span>
+                </a>
+            </div>
+        </div>
+    </div>
+</nav>
+
+<header class="relative pt-20 pb-12 overflow-hidden bg-background-dark border-b border-gray-800">
+    <div class="absolute inset-0 bg-grid-pattern-dark bg-[size:50px_50px] opacity-40"></div>
+    <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[400px] bg-radial-glow blur-3xl pointer-events-none"></div>
+
+    <div class="max-w-4xl mx-auto px-4 text-center relative z-10 fade-up">
+        <span class="text-afzal-purple font-mono text-xs uppercase tracking-widest border border-afzal-purple/30 bg-afzal-purple/10 px-3 py-1 rounded mb-6 inline-block">Select Environment</span>
+        <h1 class="text-4xl md:text-6xl font-semibold text-white mb-6 leading-tight tracking-tight">
+            Choose your <br>
+            <span class="text-transparent bg-clip-text bg-gradient-to-r from-afzal-purple via-white to-afzal-blue">Machine Learning Model.</span>
+        </h1>
+        <p class="text-lg text-gray-400 leading-relaxed max-w-xl mx-auto font-light">
+            Select the processing engine best suited for your data availability and document structure.
+        </p>
+    </div>
+</header>
+
+<section class="py-20 bg-background-dark relative z-10">
+    <div class="max-w-6xl mx-auto px-4">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-16">
+            
+            <div class="model-card group bg-[#161b22] border border-gray-800 rounded-2xl p-1 shadow-2xl hover:border-afzal-purple/50 fade-up delay-100 cursor-pointer" onclick="window.location.href='index.html'">
+                <div class="bg-gradient-to-b from-gray-800/50 to-[#0d1117] rounded-xl p-8 h-full flex flex-col relative overflow-hidden">
+                    <div class="absolute -top-24 -right-24 w-48 h-48 bg-afzal-purple/10 rounded-full blur-3xl group-hover:bg-afzal-purple/20 transition duration-500"></div>
+                    
+                    <div class="flex justify-between items-start mb-8 relative z-10">
+                        <div class="w-16 h-16 bg-surface-dark rounded-2xl border border-afzal-purple/30 flex items-center justify-center shadow-lg group-hover:scale-110 transition duration-300">
+                            <i class="fa-solid fa-chart-line text-3xl text-afzal-purple"></i>
+                        </div>
+                        <div class="flex flex-col items-end gap-2">
+                            <span class="text-xs font-bold text-afzal-purple uppercase tracking-widest">Model A</span>
+                            <span class="px-2 py-1 bg-afzal-purple/10 text-afzal-purple text-[10px] font-mono rounded border border-afzal-purple/20">High Precision</span>
+                        </div>
+                    </div>
+                    
+                    <h3 class="text-2xl font-bold text-white mb-3 group-hover:text-afzal-purple transition">Supervised Model</h3>
+                    <p class="text-sm text-gray-400 mb-8 leading-relaxed">
+                        Optimized for standard medical documents. Uses Logistic Regression trained on gold-standard datasets to identify key clinical entities.
+                    </p>
+                    
+                    <div class="mt-auto">
+                        <div class="flex flex-wrap gap-2 mb-6">
+                            <span class="tech-badge group-hover:text-white group-hover:border-afzal-purple/30">Labeled Data</span>
+                            <span class="tech-badge group-hover:text-white group-hover:border-afzal-purple/30">Training Req</span>
+                            <span class="tech-badge group-hover:text-white group-hover:border-afzal-purple/30">Standard Formats</span>
+                        </div>
+                        <a href="index.html" class="w-full py-4 bg-white text-black font-bold rounded-xl hover:bg-gray-200 transition flex items-center justify-center gap-2 group-hover:shadow-[0_0_20px_rgba(140,79,255,0.4)]">
+                            Launch Supervised <i class="fa-solid fa-arrow-right -rotate-45 group-hover:rotate-0 transition-transform duration-300"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="model-card group bg-[#161b22] border border-gray-800 rounded-2xl p-1 shadow-2xl hover:border-afzal-blue/50 fade-up delay-200 cursor-pointer" onclick="window.location.href='index.html'">
+                <div class="bg-gradient-to-b from-gray-800/50 to-[#0d1117] rounded-xl p-8 h-full flex flex-col relative overflow-hidden">
+                    <div class="absolute -top-24 -right-24 w-48 h-48 bg-afzal-blue/10 rounded-full blur-3xl group-hover:bg-afzal-blue/20 transition duration-500"></div>
+                    
+                    <div class="flex justify-between items-start mb-8 relative z-10">
+                        <div class="w-16 h-16 bg-surface-dark rounded-2xl border border-afzal-blue/30 flex items-center justify-center shadow-lg group-hover:scale-110 transition duration-300">
+                            <i class="fa-solid fa-circle-nodes text-3xl text-afzal-blue"></i>
+                        </div>
+                        <div class="flex flex-col items-end gap-2">
+                            <span class="text-xs font-bold text-afzal-blue uppercase tracking-widest">Model B</span>
+                            <span class="px-2 py-1 bg-afzal-blue/10 text-afzal-blue text-[10px] font-mono rounded border border-afzal-blue/20">Zero Shot</span>
+                        </div>
+                    </div>
+                    
+                    <h3 class="text-2xl font-bold text-white mb-3 group-hover:text-afzal-blue transition">Unsupervised Model</h3>
+                    <p class="text-sm text-gray-400 mb-8 leading-relaxed">
+                        Leverages Graph Theory (TextRank) to find central sentences mathematically. Ideal for unseen or unstructured document types without prior training.
+                    </p>
+                    
+                    <div class="mt-auto">
+                        <div class="flex flex-wrap gap-2 mb-6">
+                            <span class="tech-badge group-hover:text-white group-hover:border-afzal-blue/30">No Training</span>
+                            <span class="tech-badge group-hover:text-white group-hover:border-afzal-blue/30">Graph Based</span>
+                            <span class="tech-badge group-hover:text-white group-hover:border-afzal-blue/30">Any Document</span>
+                        </div>
+                        <a href="index.html" class="w-full py-4 bg-white text-black font-bold rounded-xl hover:bg-gray-200 transition flex items-center justify-center gap-2 group-hover:shadow-[0_0_20px_rgba(96,165,250,0.4)]">
+                            Launch Unsupervised <i class="fa-solid fa-arrow-right -rotate-45 group-hover:rotate-0 transition-transform duration-300"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<section class="py-24 bg-[#0a0a0c] border-t border-gray-800 relative overflow-hidden">
+    
+    <div class="max-w-7xl mx-auto px-4 relative z-10">
+        <div class="text-center mb-20 fade-up">
+            <h2 class="text-3xl font-bold text-white mb-3">How it works</h2>
+            <p class="text-gray-400 text-sm font-mono">From raw document to actionable intelligence in 5 steps.</p>
+        </div>
+
+        <div class="relative">
+            <div class="hidden lg:block absolute top-10 left-[50%] -translate-x-[50%] w-screen">
+                <div class="line-glow"></div>
+                <div class="dashed-flow-line"></div>
+            </div>
+
+<div class="grid grid-cols-1 lg:grid-cols-5 gap-12 relative z-10">
+
+    <div class="roadmap-step text-center fade-up delay-100 group cursor-default">
+        <div class="w-20 h-20 mx-auto bg-[#0a0a0c]
+            border-2 border-cyan-500
+            rounded-2xl flex items-center justify-center mb-6 relative z-10
+            shadow-[0_0_20px_rgba(6,182,212,0.25)]
+            hover:shadow-[0_0_40px_rgba(6,182,212,0.5)]
+            transition-all duration-500">
+
+            <i class="fa-solid fa-file-arrow-up text-cyan-400 text-2xl animate-pulse"></i>
+        </div>
+
+        <h4 class="text-white font-bold text-lg mb-2 group-hover:text-cyan-400 transition">
+            Upload
+        </h4>
+        <p class="text-xs text-gray-500 leading-relaxed px-2">
+            Securely upload PDF, Text, or captured Images.
+        </p>
+    </div>
+
+    <div class="roadmap-step text-center fade-up delay-200 group cursor-default">
+        <div class="w-20 h-20 mx-auto bg-[#0a0a0c]
+            border-2 border-pink-500
+            rounded-2xl flex items-center justify-center mb-6 relative z-10
+            shadow-[0_0_20px_rgba(236,72,153,0.25)]
+            hover:shadow-[0_0_40px_rgba(236,72,153,0.5)]
+            transition-all duration-500">
+
+            <i class="fa-solid fa-sliders text-pink-500 text-2xl animate-pulse"></i>
+        </div>
+
+        <h4 class="text-white font-bold text-lg mb-2 group-hover:text-pink-500 transition">
+            Configure
+        </h4>
+        <p class="text-xs text-gray-500 leading-relaxed px-2">
+            Select summary length and preferred tone.
+        </p>
+    </div>
+
+    <div class="roadmap-step text-center fade-up delay-300 group cursor-default">
+        <div class="w-20 h-20 mx-auto bg-[#0a0a0c]
+            border-2 border-afzal-purple
+            rounded-2xl flex items-center justify-center mb-6 relative z-10
+            shadow-[0_0_25px_rgba(140,79,255,0.35)]
+            hover:shadow-[0_0_50px_rgba(140,79,255,0.7)]
+            scale-105
+            transition-all duration-500">
+
+            <i class="fa-solid fa-wand-magic-sparkles text-afzal-purple text-2xl animate-pulse"></i>
+        </div>
+
+        <h4 class="text-white font-bold text-lg mb-2 text-afzal-purple transition">
+            Generate
+        </h4>
+        <p class="text-xs text-gray-500 leading-relaxed px-2">
+            ML Engines process text & extraction graphs.
+        </p>
+    </div>
+
+    <div class="roadmap-step text-center fade-up delay-400 group cursor-default">
+        <div class="w-20 h-20 mx-auto bg-[#0a0a0c]
+            border-2 border-emerald-500
+            rounded-2xl flex items-center justify-center mb-6 relative z-10
+            shadow-[0_0_20px_rgba(16,185,129,0.25)]
+            hover:shadow-[0_0_40px_rgba(16,185,129,0.5)]
+            transition-all duration-500">
+
+            <i class="fa-solid fa-file-lines text-emerald-500 text-2xl animate-pulse"></i>
+        </div>
+
+        <h4 class="text-white font-bold text-lg mb-2 group-hover:text-emerald-500 transition">
+            View Result
+        </h4>
+        <p class="text-xs text-gray-500 leading-relaxed px-2">
+            Side-by-side comparison of original & summary.
+        </p>
+    </div>
+
+    <div class="roadmap-step text-center fade-up delay-500 group cursor-default">
+        <div class="w-20 h-20 mx-auto bg-[#0a0a0c]
+            border-2 border-amber-500
+            rounded-2xl flex items-center justify-center mb-6 relative z-10
+            shadow-[0_0_20px_rgba(245,158,11,0.25)]
+            hover:shadow-[0_0_40px_rgba(245,158,11,0.5)]
+            transition-all duration-500">
+
+            <i class="fa-solid fa-comments text-amber-500 text-2xl animate-pulse"></i>
+        </div>
+
+        <h4 class="text-white font-bold text-lg mb-2 group-hover:text-amber-500 transition">
+            Interact
+        </h4>
+        <p class="text-xs text-gray-500 leading-relaxed px-2">
+            Chat with PDF, translate, or export report.
+        </p>
+    </div>
+
+</div>
+
+        </div>
+    </div>
+</section>
+
+<footer class="bg-black text-gray-500 py-12 md:py-16 text-sm border-t border-gray-900 relative z-20">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-2 md:grid-cols-3 gap-y-12 gap-x-8">
+            <div>
+                <h4 class="font-bold text-white uppercase tracking-wider mb-6 text-xs">Product</h4>
+                <ul class="space-y-3">
+                    <li><a class="hover:text-white transition-colors" href="research.html">Policy Analysis</a></li>
+                    <li><a class="hover:text-white transition-colors" href="research.html">Entity Extraction</a></li>
+                    <li><a class="hover:text-white transition-colors" href="about.html">Summarization API</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="font-bold text-white uppercase tracking-wider mb-6 text-xs">Resources</h4>
+                <ul class="space-y-3">
+                    <li><a class="hover:text-white transition-colors" href="about.html">Documentation</a></li>
+                    <li><a class="hover:text-white transition-colors" href="about.html">API Reference</a></li>
+                    <li><a class="hover:text-white transition-colors" href="research.html">Blog</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="font-bold text-white uppercase tracking-wider mb-6 text-xs">Company</h4>
+                <ul class="space-y-3">
+                    <li><a class="hover:text-white transition-colors" href="about.html">About Med.AI</a></li>
+                    <li><a class="hover:text-white transition-colors" href="about.html">Privacy Policy</a></li>
+                    <li><a class="hover:text-white transition-colors" href="about.html">Terms</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="mt-16 pt-8 border-t border-gray-900 flex flex-col md:flex-row justify-between items-center gap-4 md:gap-0">
+            <div class="text-xs">© 2025 Med.AI. All rights reserved.</div>
+            <div class="flex space-x-6">
+                 <a class="text-gray-500 hover:text-white transition-colors" href="#"><i class="fa-brands fa-twitter text-lg"></i></a>
+                 <a class="text-gray-500 hover:text-white transition-colors" href="#"><i class="fa-brands fa-github text-lg"></i></a>
+                 <a class="text-gray-500 hover:text-white transition-colors" href="#"><i class="fa-brands fa-linkedin text-lg"></i></a>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const observerOptions = {
+            threshold: 0.15,
+            rootMargin: "0px 0px -40px 0px"
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        const fadeElements = document.querySelectorAll('.fade-up');
+        fadeElements.forEach(el => {
+            observer.observe(el);
+        });
+    });
+</script>
+
+</body>
+</html>
