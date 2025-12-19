@@ -176,7 +176,7 @@
             <span class="text-transparent bg-clip-text bg-gradient-to-r from-afzal-purple via-white to-afzal-blue">Policy & Practice.</span>
         </h1>
         <p class="text-xl text-gray-400 leading-relaxed max-w-2xl mx-auto font-light">
-            Med.AI was built to solve the "Information Overload" crisis in healthcare by leveraging cutting-edge NLP to distill complex documents into actionable intelligence.
+            Med.AI was built to solve the "Information Overload" crisis in healthcare by leveraging cutting-edge ML to distill complex documents into actionable intelligence.
         </p>
     </div>
 </header>
@@ -296,8 +296,8 @@
                 </div>
                 <div class="w-10 h-10 bg-background-dark rounded-full border-2 border-afzal-blue shadow-[0_0_15px_rgba(77,156,255,0.6)] z-10 flex items-center justify-center text-white text-sm font-bold order-1 md:order-2 mb-4 md:mb-0">2</div>
                 <div class="md:w-5/12 order-2 md:order-3 p-6 bg-gradient-to-br from-surface-dark to-afzal-blue/5 rounded-xl border border-afzal-blue/30 shadow-[0_0_15px_rgba(77,156,255,0.05)] hover:border-afzal-blue/60 transition duration-300">
-                    <h3 class="text-xl font-bold text-white mb-2">2. AI Processing</h3>
-                    <p class="text-gray-400 text-sm">We apply <strong>BERTSumExt</strong> to score sentences based on importance and <strong>SBERT</strong> to cluster thematic topics automatically.</p>
+                    <h3 class="text-xl font-bold text-white mb-2">2. ML Processing</h3>
+                    <p class="text-gray-400 text-sm">The <strong>supervised method</strong> applies TF-IDF features with Logistic Regression for classification, while the <strong>unsupervised method</strong> uses TF-IDF with TextRank to identify and rank important content.</p>
                 </div>
             </div>
 
@@ -330,8 +330,8 @@
                 <div class="glossary-icon-bg bg-afzal-purple/10 text-afzal-purple mb-6 w-14 h-14 rounded-lg flex items-center justify-center border border-afzal-purple/20">
                     <i class="fa-solid fa-language text-2xl"></i>
                 </div>
-                <h4 class="text-lg font-bold text-white mb-2 font-mono">NLP</h4>
-                <p class="text-gray-400 text-xs leading-relaxed">Natural Language Processing. A field of AI giving machines the ability to understand text.</p>
+                <h4 class="text-lg font-bold text-white mb-2 font-mono">TF-IDF</h4>
+                <p class="text-gray-400 text-xs leading-relaxed">Term Frequency–Inverse Document Frequency. A way to find which words are most important in a text.</p>
                 <div class="absolute bottom-0 left-0 w-full h-[2px] bg-afzal-purple shadow-[0_0_10px_rgba(140,79,255,0.8)] transform scale-x-0 group-hover:scale-x-100 transition duration-500"></div>
             </div>
 
@@ -339,8 +339,8 @@
                 <div class="glossary-icon-bg bg-blue-500/10 text-blue-500 mb-6 w-14 h-14 rounded-lg flex items-center justify-center border border-blue-500/20">
                     <i class="fa-solid fa-layer-group text-2xl"></i>
                 </div>
-                <h4 class="text-lg font-bold text-white mb-2 font-mono">BERTSumExt</h4>
-                <p class="text-gray-400 text-xs leading-relaxed">A BERT variation fine-tuned for Extractive Summarization, selecting exact source sentences.</p>
+                <h4 class="text-lg font-bold text-white mb-2 font-mono">Logistic Regression</h4>
+                <p class="text-gray-400 text-xs leading-relaxed">A model that learns from examples to decide if something is important or not.</p>
                 <div class="absolute bottom-0 left-0 w-full h-[2px] bg-blue-500 shadow-[0_0_10px_rgba(59,130,246,0.8)] transform scale-x-0 group-hover:scale-x-100 transition duration-500"></div>
             </div>
 
@@ -348,8 +348,8 @@
                 <div class="glossary-icon-bg bg-cyan-400/10 text-cyan-400 mb-6 w-14 h-14 rounded-lg flex items-center justify-center border border-cyan-400/20">
                     <i class="fa-solid fa-project-diagram text-2xl"></i>
                 </div>
-                <h4 class="text-lg font-bold text-white mb-2 font-mono">KMeans</h4>
-                <p class="text-gray-400 text-xs leading-relaxed">Unsupervised clustering algorithm used to group similar sentences by theme.</p>
+                <h4 class="text-lg font-bold text-white mb-2 font-mono">TextRank</h4>
+                <p class="text-gray-400 text-xs leading-relaxed">A method that finds the most important sentences by seeing how they connect to each other.</p>
                 <div class="absolute bottom-0 left-0 w-full h-[2px] bg-cyan-400 shadow-[0_0_10px_rgba(34,211,238,0.8)] transform scale-x-0 group-hover:scale-x-100 transition duration-500"></div>
             </div>
 
@@ -536,4 +536,5 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 </script>
 </body>
+
 </html>
