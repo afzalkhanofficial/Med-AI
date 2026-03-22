@@ -29,18 +29,18 @@
 <!-- Contributors -->
 <div align="center">
   <h3>Contributors</h3>
-  <table>
-    <tr>
-      <td align="center">
+  <table style="border: none;">
+    <tr style="border: none;">
+      <td align="center" style="border: none;">
         <a href="https://github.com/afzalkhanofficial">
-          <img src="IMG/ak.png" width="80" style="border-radius: 50%;" alt="Afzal">
+          <img src="IMG/ak.png" width="80" style="border-radius: 50%; border: 3px dotted #8C4FFF;" alt="Afzal">
         </a>
         <br />
         <strong>Afzal</strong>
       </td>
-      <td align="center">
+      <td align="center" style="border: none;">
         <a href="https://github.com/Tejaswani-Chauhan">
-          <img src="IMG/tc.png" width="80" style="border-radius: 50%;" alt="Tejaswani">
+          <img src="IMG/tc.png" width="80" style="border-radius: 50%; border: 3px dotted #8C4FFF;" alt="Tejaswani">
         </a>
         <br />
         <strong>Tejaswani</strong>
